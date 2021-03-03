@@ -19,11 +19,6 @@ const Filter = ({ value, onChange }) => (
   </div>
 );
 
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
-
 const mapStateToProps = state => ({
   value: state.contacts.filter,
 });
@@ -31,5 +26,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onChange: e => dispatch(contacts.findContact(e.target.value)),
 });
+
+Filter.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

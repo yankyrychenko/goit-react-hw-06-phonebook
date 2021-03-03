@@ -13,12 +13,17 @@ class ContactForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    this.props.onSubmit({
-      name: this.state.name,
-      number: this.state.number,
-    });
+    if (this.state.name !== '' && this.state.number !== '') {
+      this.props.onSubmit({
+        name: this.state.name,
+        number: this.state.number,
+      });
 
-    this.setState({ name: '', number: '' });
+      this.setState({ name: '', number: '' });
+      return;
+    }
+
+    alert('Please, complete all required fields!');
   };
 
   render() {
@@ -28,6 +33,7 @@ class ContactForm extends Component {
           Name
           <input
             className={style.input}
+            autoComplete="off"
             type="text"
             name="name"
             value={this.state.name}
@@ -38,6 +44,7 @@ class ContactForm extends Component {
           Number
           <input
             className={style.input}
+            autoComplete="off"
             type="text"
             name="number"
             value={this.state.number}
